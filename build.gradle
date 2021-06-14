@@ -1,18 +1,23 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        compose_version = '1.0.0-beta07'
+        compose_version = "1.0.0-beta08"
+        dagger_hilt_version = "2.36"
+        coroutines_version = "1.4.3"
+        accompanist_version = "0.11.1"
+        kotlin_version = "1.5.10"
     }
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.1.0-alpha01"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "com.android.tools.build:gradle:7.1.0-alpha02"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.1.0"
+        classpath "com.karumi:shot:5.10.5"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$dagger_hilt_version"
     }
 }
 
