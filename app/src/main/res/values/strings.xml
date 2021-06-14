@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KataSuperHeroesCompose</string>
+    <string name="super_heroes_screen_title">Kata Super Heroes</string>
 </resources>
