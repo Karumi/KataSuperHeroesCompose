@@ -87,7 +87,6 @@ private fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -
             modifier = Modifier
                 .fillMaxSize()
                 .constrainAs(background) {
-
                 },
             painter = rememberCoilPainter(superHero.photo),
             contentDescription = superHero.name,
@@ -131,7 +130,8 @@ private fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -
                 .constrainAs(badge) {
                     end.linkTo(parent.end, 10.dp)
                     bottom.linkTo(parent.bottom, 10.dp)
-                }, superHero = superHero
+                },
+            superHero = superHero
         )
     }
 
