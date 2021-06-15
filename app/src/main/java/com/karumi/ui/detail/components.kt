@@ -79,7 +79,7 @@ private fun SuperHeroLoadedScreen(superHero: SuperHero) = Column(Modifier.fillMa
         )
         Spacer(Modifier.size(10.dp))
         Text(
-            text = superHero.description.repeat(10),
+            text = superHero.description,
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Justify
