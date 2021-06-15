@@ -1,8 +1,6 @@
 package com.karumi.ui
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -12,7 +10,6 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.karumi.ui.detail.SuperHeroDetailScreen
 import com.karumi.ui.list.SuperHeroListScreen
-import com.karumi.ui.list.SuperHeroListViewModel
 
 sealed class Routes(val path: String) {
     object List : Routes("list")
