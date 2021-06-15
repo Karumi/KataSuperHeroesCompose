@@ -1,18 +1,20 @@
 package com.karumi.core.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.karumi.MainActivity
-import com.karumi.ui.theme.KataSuperHeroesComposeTheme
+import com.karumi.R
 
 @Composable
 fun <C, E> LinkViewModelLifecycle(viewModel: ViewModel<C, E>) {
@@ -27,15 +29,25 @@ fun <C, E> LinkViewModelLifecycle(viewModel: ViewModel<C, E>) {
 }
 
 @Composable
-fun SuperHeroTopBar(title: String) {
+fun SuperHeroTopBar(title: String, onBackButtonTapped: (() -> Unit)? = null) {
     TopAppBar {
-        Spacer(Modifier.size(20.dp))
+        if (onBackButtonTapped != null) {
+            Spacer(Modifier.size(8.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.ic_arrow_back),
+                contentDescription = stringResource(
+                    id = R.string.back_button_content_description
+                ),
+                modifier = Modifier
+                    .clip(MaterialTheme.shapes.medium)
+                    .clickable { onBackButtonTapped() }
+                    .padding(4.dp)
+                    .size(18.dp)
+            )
+            Spacer(Modifier.size(10.dp))
+        } else {
+            Spacer(Modifier.size(20.dp))
+        }
         Text(title, style = MaterialTheme.typography.h1)
     }
-}
-
-@Preview
-@Composable
-private fun SuperHeroTopBarPreview() = KataSuperHeroesComposeTheme {
-    SuperHeroTopBar(title = "Kata Super Heroes 🚀")
 }

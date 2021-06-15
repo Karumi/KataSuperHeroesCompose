@@ -35,7 +35,12 @@ fun SuperHeroDetailScreen(
     Scaffold(
         backgroundColor = MaterialTheme.colors.background,
         topBar = {
-            SuperHeroTopBar(title = viewModel.superHeroName)
+            SuperHeroTopBar(
+                title = viewModel.superHeroName,
+                onBackButtonTapped = {
+                    navHostController.popBackStack()
+                }
+            )
         },
         content = {
             when (val currentState = state) {

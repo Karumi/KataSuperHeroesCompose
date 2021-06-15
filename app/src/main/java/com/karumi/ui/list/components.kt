@@ -38,7 +38,9 @@ fun SuperHeroListScreen(
     Scaffold(
         backgroundColor = MaterialTheme.colors.background,
         topBar = {
-            SuperHeroTopBar(title = stringResource(id = R.string.super_heroes_screen_title))
+            SuperHeroTopBar(
+                title = stringResource(id = R.string.super_heroes_screen_title)
+            )
         },
         content = {
             when (val currentState = state) {
