@@ -3,6 +3,7 @@ package com.karumi.ui.list
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.ui.Alignment
@@ -12,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -25,6 +25,8 @@ import com.karumi.core.ui.SuperHeroTopBar
 import com.karumi.core.ui.ViewModelState
 import com.karumi.domain.model.SuperHero
 import com.karumi.ui.Routes
+import androidx.compose.runtime.*
+import androidx.compose.material.*
 
 @Composable
 fun SuperHeroListScreen(
@@ -63,7 +65,7 @@ private fun SuperHeroListLoadedScreen(
 }
 
 @Composable
-private fun SuperHeroesList(superHeroes: List<SuperHero>, onSuperHeroTapped: (SuperHero) -> Unit) =
+fun SuperHeroesList(superHeroes: List<SuperHero>, onSuperHeroTapped: (SuperHero) -> Unit) =
     LazyColumn(Modifier.fillMaxSize()) {
         items(superHeroes) { superHero ->
             SuperHeroItem(superHero, onSuperHeroTapped)
@@ -139,14 +141,12 @@ private fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -
     }
 
 @Composable
-@Preview
 private fun SuperHeroEmptyCase() =
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(text = stringResource(id = R.string.super_heroes_screen_empty_case_text))
     }
 
 @Composable
-@Preview
 private fun SuperHeroListLoadingScreen() =
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         CircularProgressIndicator(color = MaterialTheme.colors.secondary)
