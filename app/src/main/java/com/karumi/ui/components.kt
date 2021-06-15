@@ -1,6 +1,7 @@
 package com.karumi.ui
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -9,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.karumi.ui.detail.SuperHeroDetailScreen
+import com.karumi.ui.detail.SuperHeroDetailViewModel
 import com.karumi.ui.list.SuperHeroListScreen
 
 sealed class Routes(val path: String) {
@@ -43,9 +45,12 @@ private fun NavGraphBuilder.SuperHeroDetailNavRoute(navController: NavHostContro
             }
         )
     ) { backStackEntry ->
-        val superHeroId = backStackEntry.arguments?.getString(Routes.Detail.superHeroIdArgName) ?: ""
+        val superHeroId =
+            backStackEntry.arguments?.getString(Routes.Detail.superHeroIdArgName) ?: ""
+        val viewModel: SuperHeroDetailViewModel = hiltViewModel()
+        viewModel.superHeroName = superHeroId
         SuperHeroDetailScreen(
-            superHeroId,
+            viewModel,
             navController
         )
     }
