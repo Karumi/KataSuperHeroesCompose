@@ -19,20 +19,17 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.google.accompanist.coil.rememberCoilPainter
 import com.karumi.R
 import com.karumi.core.ui.LinkViewModelLifecycle
 import com.karumi.core.ui.SuperHeroTopBar
 import com.karumi.core.ui.ViewModelState
 import com.karumi.domain.model.SuperHero
-import com.karumi.ui.Routes
 
 @Composable
 fun SuperHeroListScreen(
-    navController: NavController,
-    viewModel: SuperHeroListViewModel = hiltViewModel()
+    viewModel: SuperHeroListViewModel,
+    onSuperHeroTapped: (SuperHero) -> Unit
 ) {
     LinkViewModelLifecycle(viewModel)
     val state by viewModel.state.collectAsState(ViewModelState.Loading())
@@ -48,9 +45,7 @@ fun SuperHeroListScreen(
                 is ViewModelState.Loaded ->
                     SuperHeroListLoadedScreen(
                         state = currentState.content,
-                        onSuperHeroTapped = { superHero ->
-                            navController.navigate(Routes.Detail.pathFor(superHero.name))
-                        }
+                        onSuperHeroTapped = onSuperHeroTapped
                     )
                 else -> SuperHeroListLoadingScreen()
             }

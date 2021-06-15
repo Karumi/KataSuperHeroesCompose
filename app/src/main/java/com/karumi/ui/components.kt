@@ -12,12 +12,13 @@ import androidx.navigation.compose.rememberNavController
 import com.karumi.ui.detail.SuperHeroDetailScreen
 import com.karumi.ui.detail.SuperHeroDetailViewModel
 import com.karumi.ui.list.SuperHeroListScreen
+import com.karumi.ui.list.SuperHeroListViewModel
 
 sealed class Routes(val path: String) {
     object List : Routes("list")
     object Detail : Routes("detail/{superHeroId}") {
         const val superHeroIdArgName: String = "superHeroId"
-        fun pathFor(superHeroId: String) = "detail/$superHeroId"
+        fun pathFor(superHeroId: String): String = "detail/$superHeroId"
     }
 }
 
@@ -32,7 +33,10 @@ fun SuperHeroApp() {
 
 private fun NavGraphBuilder.SuperHeroListNavRoute(navController: NavHostController) {
     composable(Routes.List.path) {
-        SuperHeroListScreen(navController)
+        val viewModel: SuperHeroListViewModel = hiltViewModel()
+        SuperHeroListScreen(viewModel) { superHero ->
+            navController.navigate(Routes.Detail.pathFor(superHero.name))
+        }
     }
 }
 
@@ -50,8 +54,9 @@ private fun NavGraphBuilder.SuperHeroDetailNavRoute(navController: NavHostContro
         val viewModel: SuperHeroDetailViewModel = hiltViewModel()
         viewModel.superHeroName = superHeroId
         SuperHeroDetailScreen(
-            viewModel,
-            navController
-        )
+            viewModel
+        ) {
+            navController.popBackStack()
+        }
     }
 }

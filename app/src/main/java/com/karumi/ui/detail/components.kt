@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.google.accompanist.coil.rememberCoilPainter
 import com.karumi.core.ui.LinkViewModelLifecycle
 import com.karumi.core.ui.SuperHeroTopBar
@@ -28,7 +27,7 @@ import com.karumi.ui.list.AvengerBadge
 @Composable
 fun SuperHeroDetailScreen(
     viewModel: SuperHeroDetailViewModel,
-    navHostController: NavHostController
+    onBackButtonTapped: () -> Unit
 ) {
     LinkViewModelLifecycle(viewModel)
     val state by viewModel.state.collectAsState(ViewModelState.Loading())
@@ -37,9 +36,7 @@ fun SuperHeroDetailScreen(
         topBar = {
             SuperHeroTopBar(
                 title = viewModel.superHeroName,
-                onBackButtonTapped = {
-                    navHostController.popBackStack()
-                }
+                onBackButtonTapped = onBackButtonTapped
             )
         },
         content = {
