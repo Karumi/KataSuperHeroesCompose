@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -67,7 +68,7 @@ private fun SuperHeroListLoadedScreen(
 }
 
 @Composable
-fun SuperHeroesList(superHeroes: List<SuperHero>, onSuperHeroTapped: (SuperHero) -> Unit) =
+private fun SuperHeroesList(superHeroes: List<SuperHero>, onSuperHeroTapped: (SuperHero) -> Unit) =
     LazyColumn(Modifier.fillMaxSize()) {
         items(superHeroes) { superHero ->
             SuperHeroItem(superHero, onSuperHeroTapped)
@@ -75,7 +76,7 @@ fun SuperHeroesList(superHeroes: List<SuperHero>, onSuperHeroTapped: (SuperHero)
     }
 
 @Composable
-private fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -> Unit) =
+fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -> Unit) =
     ConstraintLayout(
         Modifier
             .fillMaxWidth()
@@ -123,6 +124,8 @@ private fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -
                 bottom.linkTo(parent.bottom, 10.dp)
                 width = Dimension.preferredWrapContent
             },
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
             text = superHero.name,
             style = MaterialTheme.typography.h2,
             color = MaterialTheme.colors.onBackground
