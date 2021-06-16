@@ -1,10 +1,10 @@
-![Karumi logo][karumilogo] KataSuperHeroes with Jetpack Compose ![CI](https://github.com/karumi/KataSuperHeroesCompose/workflows/Build,%20lint,%20and%20test/badge.svg)
+![Karumi logo][karumilogo] KataSuperHeroes with Jetpack Compose [![Build, lint, and test](https://github.com/Karumi/KataSuperHeroesCompose/actions/workflows/build.yml/badge.svg)](https://github.com/Karumi/KataSuperHeroesCompose/actions/workflows/build.yml)
 ============================
 
 - We are here to learn about [Jetpack Compose](https://developer.android.com/jetpack/compose).
 - We are going to use [Jetpack Compose Testing Tools](https://developer.android.com/jetpack/compose/testing) to interact with the Application UI from our tests.
 - We are going to use [Shot](https://github.com/karumi/Shot) test our UI using Screenshot Testing.
-- We are going to use (Hilt)[https://developer.android.com/training/dependency-injection/hilt-android] to replace production code with [Test Doubles][testDoubles].
+- We are going to use [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) to replace production code with [Test Doubles][testDoubles].
 - We are going to practice pair programming.
 
 ---
@@ -25,7 +25,7 @@ This Application is based on Jetpack Compose components and Jetpack View Models:
 
 ![SuperHeroDetailActivityScreenshot][superHeroDetailActivityScreenshot]
 
-The application architecture, dependencies and configuration is ready to just start working with view models, Hilt as dependency injector and Jetpack Compose for the UI. In this project you'll find  ``Hilt`` configured to be able to replace production code with test doubles easily and Jetpack Compose Testing Tools to be able to interact with the application user interface.
+The application architecture, dependencies and configuration is ready to just start working with view models, Hilt as dependency injector and Jetpack Compose for the UI.
 
 ## Tasks
 
