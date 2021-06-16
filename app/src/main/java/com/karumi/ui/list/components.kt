@@ -63,98 +63,27 @@ private fun SuperHeroListLoadedScreen(
 }
 
 @Composable
-private fun SuperHeroesList(superHeroes: List<SuperHero>, onSuperHeroTapped: (SuperHero) -> Unit) =
-    LazyColumn(Modifier.fillMaxSize()) {
-        items(superHeroes) { superHero ->
-            SuperHeroItem(superHero, onSuperHeroTapped)
-        }
-    }
+private fun SuperHeroesList(superHeroes: List<SuperHero>, onSuperHeroTapped: (SuperHero) -> Unit) {
 
-@Composable
-fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -> Unit) =
-    ConstraintLayout(
-        Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-            .clickable {
-                onSuperHeroTapped(superHero)
-            }
-    ) {
-        val (background, backgroundGradient, name, badge) = createRefs()
-        Image(
-            modifier = Modifier
-                .fillMaxSize()
-                .constrainAs(background) {
-                },
-            painter = rememberCoilPainter(superHero.photo),
-            contentDescription = superHero.name,
-            contentScale = ContentScale.Crop
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Black
-                        )
-                    )
-                )
-                .constrainAs(backgroundGradient) {
-                    bottom.linkTo(parent.bottom)
-                    linkTo(start = parent.start, end = parent.end)
-                }
-        )
-        Text(
-            modifier = Modifier.constrainAs(name) {
-                linkTo(
-                    start = parent.start,
-                    end = badge.start,
-                    bias = 0f,
-                    startMargin = 20.dp,
-                    endMargin = 10.dp
-                )
-                bottom.linkTo(parent.bottom, 10.dp)
-                width = Dimension.preferredWrapContent
-            },
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
-            text = superHero.name,
-            style = MaterialTheme.typography.h2,
-            color = MaterialTheme.colors.onBackground
-        )
-        AvengerBadge(
-            modifier = Modifier
-                .constrainAs(badge) {
-                    end.linkTo(parent.end, 10.dp)
-                    bottom.linkTo(parent.bottom, 10.dp)
-                },
-            superHero = superHero
-        )
-    }
-
-@Composable
-fun AvengerBadge(modifier: Modifier = Modifier, superHero: SuperHero) {
-    if (superHero.isAvenger) {
-        Icon(
-            modifier = modifier.size(70.dp),
-            tint = Color.Unspecified,
-            painter = painterResource(id = R.mipmap.ic_avengers),
-            contentDescription = stringResource(R.string.avengers_badge_content_description)
-        )
-    }
 }
 
 @Composable
-private fun SuperHeroEmptyCase() =
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = stringResource(id = R.string.super_heroes_screen_empty_case_text))
-    }
+fun SuperHeroItem(superHero: SuperHero, onSuperHeroTapped: (SuperHero) -> Unit) {
+
+}
 
 @Composable
-private fun SuperHeroListLoadingScreen() =
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        CircularProgressIndicator(color = MaterialTheme.colors.secondary)
-    }
+fun AvengerBadge(modifier: Modifier = Modifier, superHero: SuperHero) {
+
+}
+
+@Composable
+private fun SuperHeroEmptyCase() {
+
+}
+
+@Composable
+private fun SuperHeroListLoadingScreen() {
+
+}
+

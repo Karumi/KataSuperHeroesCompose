@@ -31,25 +31,5 @@ fun <C, E> LinkViewModelLifecycle(viewModel: ViewModel<C, E>) {
 
 @Composable
 fun SuperHeroTopBar(title: String, onBackButtonTapped: (() -> Unit)? = null) {
-    TopAppBar {
-        if (onBackButtonTapped != null) {
-            Spacer(Modifier.size(8.dp))
-            Icon(
-                painter = painterResource(id = R.drawable.ic_arrow_back),
-                contentDescription = stringResource(
-                    id = R.string.back_button_content_description
-                ),
-                modifier = Modifier
-                    .clip(MaterialTheme.shapes.medium)
-                    .testTag(SuperHeroesTestTags.backButton)
-                    .clickable { onBackButtonTapped() }
-                    .padding(4.dp)
-                    .size(18.dp)
-            )
-            Spacer(Modifier.size(10.dp))
-        } else {
-            Spacer(Modifier.size(20.dp))
-        }
-        Text(title, style = MaterialTheme.typography.h1)
-    }
+
 }
