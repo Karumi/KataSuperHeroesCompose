@@ -1,8 +1,7 @@
 package com.karumi.ui.list
 
-import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performClick
 import com.karumi.domain.model.SuperHero
 import com.karumi.domain.usecase.GetSuperHeroes
@@ -11,7 +10,6 @@ import com.karumi.ui.theme.KataSuperHeroesComposeTheme
 import com.karumi.utils.MockedTest
 import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.TestCase.assertEquals
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
@@ -23,18 +21,10 @@ class SuperHeroListScreenScreenshotTests : ScreenshotTest, MockedTest {
     }
 
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+    val composeTestRule = createComposeRule()
 
     @Mock
     lateinit var getSuperHeroes: GetSuperHeroes
-
-    private lateinit var viewModel: SuperHeroListViewModel
-
-    @Before
-    override fun setUp() {
-        super.setUp()
-        viewModel = SuperHeroListViewModel(getSuperHeroes)
-    }
 
     @Test
     fun showsEmptyCaseIfThereAreNoSuperHeroes() {
@@ -100,6 +90,7 @@ class SuperHeroListScreenScreenshotTests : ScreenshotTest, MockedTest {
     }
 
     private fun renderScreen(onSuperHeroTapped: (SuperHero) -> Unit = {}) {
+        val viewModel = SuperHeroListViewModel(getSuperHeroes)
         composeTestRule.setContent {
             KataSuperHeroesComposeTheme {
                 SuperHeroListScreen(viewModel, onSuperHeroTapped)

@@ -11,6 +11,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -40,6 +41,7 @@ fun SuperHeroTopBar(title: String, onBackButtonTapped: (() -> Unit)? = null) {
                 ),
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.medium)
+                    .testTag(SuperHeroesTestTags.backButton)
                     .clickable { onBackButtonTapped() }
                     .padding(4.dp)
                     .size(18.dp)
