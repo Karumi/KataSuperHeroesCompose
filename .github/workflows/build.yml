@@ -30,8 +30,6 @@ jobs:
         run: ./gradlew --version
       - name: Evaluate ktlint
         run: ./gradlew ktlintCheck
-      - name: Build
-        run: ./gradlew assembleDebug
       - name: Evaluate Android linter
         run: ./gradlew lint
       - name: Run instrumentation tests
