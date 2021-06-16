@@ -35,56 +35,6 @@ class SuperHeroListScreenScreenshotTests : ScreenshotTest, MockedTest {
         compareScreenshot(composeTestRule)
     }
 
-    @Test
-    fun showsJustOneSuperHero() {
-        givenThereAreSomeSuperHeroes(1)
-
-        renderScreen()
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun showsSuperHeroesIfThereAreSomeSuperHeroes() {
-        givenThereAreSomeSuperHeroes(ANY_NUMBER_OF_SUPER_HEROES)
-
-        renderScreen()
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun showsAvengersBadgeIfASuperHeroIsPartOfTheAvengersTeam() {
-        givenThereAreSomeAvengers(ANY_NUMBER_OF_SUPER_HEROES)
-
-        renderScreen()
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun doesNotShowAvengersBadgeIfASuperHeroIsNotPartOfTheAvengersTeam() {
-        givenThereAreSomeSuperHeroes(ANY_NUMBER_OF_SUPER_HEROES)
-
-        renderScreen()
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun notifiesTapOnSuperHero() {
-        val superHeroes = givenThereAreSomeSuperHeroes()
-        val superHeroToTap = superHeroes.first()
-
-        var superHeroTapped: SuperHero? = null
-        renderScreen {
-            superHeroTapped = it
-        }
-        tapSuperHeroItem(superHeroes.first())
-
-        assertEquals(superHeroToTap, superHeroTapped)
-    }
-
     private fun tapSuperHeroItem(first: SuperHero) {
         composeTestRule.onNode(hasText(first.name)).performClick()
     }
@@ -96,25 +46,6 @@ class SuperHeroListScreenScreenshotTests : ScreenshotTest, MockedTest {
                 SuperHeroListScreen(viewModel, onSuperHeroTapped)
             }
         }
-    }
-
-    private fun givenThereAreSomeAvengers(numberOfAvengers: Int): List<SuperHero> =
-        givenThereAreSomeSuperHeroes(numberOfAvengers, avengers = true)
-
-    private fun givenThereAreSomeSuperHeroes(
-        numberOfSuperHeroes: Int = 1,
-        avengers: Boolean = false
-    ): List<SuperHero> {
-        val superHeroes = IntRange(0, numberOfSuperHeroes - 1).map { id ->
-            val superHeroName = "SuperHero - $id"
-            val superHeroDescription = "Description Super Hero - $id"
-            SuperHero(
-                superHeroName, null, avengers,
-                superHeroDescription
-            )
-        }
-        whenever(getSuperHeroes()).thenReturn(superHeroes)
-        return superHeroes
     }
 
     private fun givenThereAreNoSuperHeroes() {

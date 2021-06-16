@@ -6,7 +6,6 @@ import androidx.compose.ui.test.performClick
 import com.karumi.domain.model.SuperHero
 import com.karumi.shot.ScreenshotTest
 import com.karumi.ui.theme.KataSuperHeroesComposeTheme
-import junit.framework.TestCase.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
@@ -24,55 +23,6 @@ class SuperHeroItemScreenshotTests : ScreenshotTest {
         compareScreenshot(composeTestRule)
     }
 
-    @Test
-    fun showsSuperHeroesWithLongNames() {
-        val superHero = givenASuperHeroWithALongName()
-
-        renderComponent(superHero)
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun showsAvengersWithLongNames() {
-        val superHero = givenASuperHeroWithALongName(isAvenger = true)
-
-        renderComponent(superHero)
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun showsSuperHeroesWithLongDescriptions() {
-        val superHero = givenASuperHeroWithALongDescription()
-
-        renderComponent(superHero)
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun showsAvengersBadge() {
-        val superHero = givenASuperHero(isAvenger = true)
-
-        renderComponent(superHero)
-
-        compareScreenshot(composeTestRule)
-    }
-
-    @Test
-    fun notifiesTapOnItemUsingTheLambdaPassedAsArgument() {
-        val superHero = givenASuperHero(isAvenger = true)
-
-        var itemTapped = false
-        renderComponent(superHero) {
-            itemTapped = true
-        }
-        tapItem(superHero)
-
-        assertTrue(itemTapped)
-    }
-
     private fun tapItem(superHero: SuperHero) {
         composeTestRule.onNode(hasText(superHero.name)).performClick()
     }
@@ -86,31 +36,6 @@ class SuperHeroItemScreenshotTests : ScreenshotTest {
                 SuperHeroItem(superHero, onSuperHeroTapped)
             }
         }
-    }
-
-    private fun givenASuperHeroWithALongDescription(): SuperHero {
-        val superHeroName = "Super Hero Name"
-        val superHeroDescription = """
-            |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            |incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            |ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            |voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            |proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            |""".trimMargin()
-        val isAvenger = false
-        return givenASuperHero(superHeroName, superHeroDescription, isAvenger)
-    }
-
-    private fun givenASuperHeroWithALongName(isAvenger: Boolean = false): SuperHero {
-        val superHeroName = """
-            |Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            |incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            |ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            |voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            |proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            |""".trimMargin()
-        val superHeroDescription = "Description Super Hero"
-        return givenASuperHero(superHeroName, superHeroDescription, isAvenger)
     }
 
     private fun givenASuperHero(
