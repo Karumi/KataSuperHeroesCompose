@@ -34,10 +34,8 @@ jobs:
         run: ./gradlew assembleDebug
       - name: Evaluate Android linter
         run: ./gradlew lint
-      - name: Run unit tests
-        run: ./gradlew testStagingDebugUnitTest
       - name: Run instrumentation tests
-        run: ./gradlew stagingDebugExecuteScreenshotTests
+        run: ./gradlew executeScreenshotTests
       - uses: actions/upload-artifact@v2
         if: always()
         with:
