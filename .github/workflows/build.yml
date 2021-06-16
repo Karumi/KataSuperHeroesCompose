@@ -1,5 +1,5 @@
 name: "Build, lint, and test"
-on: [pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch, push]
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
 jobs:
